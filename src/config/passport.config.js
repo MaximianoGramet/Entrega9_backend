@@ -15,11 +15,9 @@ const initializePassport = () => {
         },
         async (accessToken, refreshToken, profile, done) => {
             console.log("Profile obtenido del usuario de GitHub: ");
-            console.log(profile);
             try {
                 const user = await userModel.findOne({ email: profile._json.email });
                 console.log("user Found:");
-                console.log(user);
                 if (!user) {
                     console.warn("User doesn't exists with username: " + profile._json.email);
                     let newUser = {
@@ -71,7 +69,6 @@ const initializePassport = () => {
             try {
                 const user = await userModel.findOne({ email: username });
                 console.log("User found:");
-                console.log(user);
                 if (!user) {
                     console.warn("User doesn't exists with username: " + username);
                     return done(null, false);
